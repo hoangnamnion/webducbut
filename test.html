@@ -1,0 +1,31 @@
+<form action="https://formsubmit.co/webhoangnam@gmail.com" method="POST">
+    <input type="text" name="name" placeholder="Họ và tên" required>
+    <input type="email" name="email" placeholder="Email" value="tkcapcutpro@gmail.com" style="display:none">
+    <textarea name="message" placeholder="Nội dung" required></textarea>
+  
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="box">
+    <input type="hidden" name="_autoresponse" value="Cảm ơn bạn đã gửi thông tin!">
+  
+    <button type="submit">Gửi</button>
+  </form>
+  <div id="success-message" style="display:none;color:green;margin-top:10px;">Gửi yêu cầu thành công!</div>
+  <script>
+    document.querySelector('form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        document.getElementById('success-message').style.display = 'block';
+        form.reset();
+      } else {
+        alert('Có lỗi xảy ra, vui lòng thử lại!');
+      }
+    });
+  </script>
+  

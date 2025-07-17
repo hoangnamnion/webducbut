@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Cảnh báo xâm nhập</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: #ff3b3b;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      animation: shake 1s infinite;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px red;
+    }
+
+    .robot {
+      font-size: 100px;
+      animation: blink 1s infinite alternate;
+    }
+
+    .warning {
+      font-size: 20px;
+      background-color: #ff0000aa;
+      padding: 10px 20px;
+      border: 2px solid red;
+      border-radius: 8px;
+      text-shadow: 0 0 5px black;
+    }
+
+    @keyframes blink {
+      from { opacity: 1; }
+      to { opacity: 0.3; }
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(2px, -2px); }
+      50% { transform: translate(-2px, 2px); }
+      75% { transform: translate(2px, 2px); }
+      100% { transform: translate(0, 0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="robot">🤖</div>
+  <h1>CẢNH BÁO!</h1>
+  <div class="warning">
+    Hệ thống phát hiện bạn đang cố tình xâm nhập trái phép vào máy chủ!<br>
+    Mọi hành vi của bạn đang được ghi lại...
+  </div>
+</body>
+</html>

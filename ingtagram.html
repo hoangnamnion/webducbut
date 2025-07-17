@@ -1,0 +1,843 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ĐỨC BỤT | LOCKET</title>
+    <style>
+        :root {
+            --primary: #1877f2;
+            --success: #42b72a;
+            --danger: #ff3333;
+            --dark: #1c1e21;
+            --light: #f0f2f5;
+            --text: #050505;
+            --text-secondary: #65676b;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 680px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+        
+        .profile-info {
+            margin-left: 20px;
+            flex: 1;
+        }
+        
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .verified-badge {
+            width: 20px;
+            height: 20px;
+            margin-left: 8px;
+        }
+        
+        .profile-bio {
+            color: var(--text-secondary);
+            margin: 5px 0 10px;
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .stat-icon {
+            margin-right: 5px;
+        }
+        
+        .section {
+            padding: 18px 20px;
+            border-bottom: 1px solid #dddfe2;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 10px;
+        }
+        
+        .info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .info-label {
+            min-width: 90px;
+            font-weight: bold;
+        }
+        .info-value {
+            flex: 1;
+        }
+        
+        .info-value a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+        
+        .app-card {
+            background: #f5f6f7;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .app-title {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .download-app-btn {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .download-app-btn:hover {
+            background-color: #333;
+        }
+        
+        .download-app-btn i {
+            margin-right: 5px;
+        }
+        
+        .app-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-right: 15px;
+        }
+        
+        .app-details {
+            flex: 1;
+        }
+        
+        .app-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .app-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .copy-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .copy-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .copy-btn i {
+            margin-right: 6px;
+        }
+        
+        .copy-account {
+            background: #e7f3ff;
+            color: var(--primary);
+        }
+        
+        .copy-password {
+            background: #e8f5e9;
+            color: var(--success);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        
+        .action-btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: #166fe5;
+        }
+        
+        .btn-success {
+            background: var(--success);
+        }
+        
+        .btn-success:hover {
+            background: #36a420;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s;
+            max-width: 90%;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .browser-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .browser-notification.show {
+            opacity: 1;
+        }
+        
+        .messenger-warning {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--danger);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            z-index: 1100;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .messenger-warning p {
+            margin-bottom: 15px;
+        }
+        
+        .open-safari-btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .copy-fallback {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .copy-content {
+            background: #2d3436;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            width: 90%;
+            max-width: 500px;
+            word-break: break-all;
+        }
+        
+        .close-fallback {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-info {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .copy-buttons {
+                flex-direction: column;
+            }
+        }
+      .nice-form {
+        max-width: 350px;
+        margin: 40px auto;
+        padding: 24px 28px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        font-family: 'Segoe UI', Arial, sans-serif;
+      }
+      .nice-form input[type="text"],
+      .nice-form textarea {
+        padding: 10px 12px;
+        border: 1px solid #d0d0d0;
+        border-radius: 7px;
+        font-size: 1rem;
+        transition: border 0.2s;
+        background: #fafbfc;
+        resize: none;
+      }
+      .nice-form input[type="text"]:focus,
+      .nice-form textarea:focus {
+        border: 1.5px solid #4f8cff;
+        outline: none;
+        background: #fff;
+      }
+      .nice-form button[type="submit"] {
+        background: linear-gradient(90deg, #4f8cff 60%, #38c6ff 100%);
+        color: #fff;
+        border: none;
+        border-radius: 7px;
+        padding: 10px 0;
+        font-size: 1.08rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+        transition: background 0.2s, transform 0.1s;
+      }
+      .nice-form button[type="submit"]:hover {
+        background: linear-gradient(90deg, #38c6ff 60%, #4f8cff 100%);
+        transform: translateY(-2px) scale(1.03);
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <div id="messengerWarning" class="messenger-warning">
+        <p><i class="fas fa-exclamation-triangle"></i> Bắt Buộc Phải Mở Bằng Safari  </p>
+        <button id="openSafariBtn" class="open-safari-btn">
+            <i class="fas fa-external-link-alt"></i> Mở Đi, Rồi Lại Bảo Lỗi Không Lên GOLD
+        </button>
+    </div>
+
+    <div id="browserNotification" class="browser-notification"></div>
+
+    <div id="copyFallback" class="copy-fallback">
+        <h3><i class="fas fa-exclamation-circle"></i> Vui lòng sao chép thủ công</h3>
+        <p>Trình duyệt không hỗ trợ sao chép tự động</p>
+        <div id="fallbackText" class="copy-content"></div>
+        <button class="close-fallback">Đã sao chép xong</button>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <img src="https://webchuaanh.odoo.com/web/image/313-4822f623/480906368_649760317574241_1410297243193594829_n.webp" alt="Profile" class="profile-pic" loading="lazy">
+            <div class="profile-info">
+                <h1 class="profile-name">
+                    Đức Bụt
+                    <img src="https://lennguyenmedia.com/wp-content/uploads/2021/11/image-18.png" alt="Verified" class="verified-badge" loading="lazy">
+                </h1>
+                <p class="profile-bio">Sống tại Thanh Hóa (Bỉm Sơn) · Hà Nội</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-user-graduate stat-icon"></i>
+                        <span>ĐH Công Nghệ GTVT</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-birthday-cake stat-icon"></i>
+                        <span>Ngày sinh  </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;">
+            <div style="flex:1;">
+                <h2 class="section-title"><i class="fas fa-info-circle"></i> Thông tin cá nhân</h2>
+                <div class="info-grid">
+                    <div class="info-row">
+                        <div class="info-label">Locket: </div>
+                        <div class="info-value"><a href="#"></a></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Ngân hàng:  </div>
+                        <div class="info-value">VIETINBANK</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">STK: </div>
+                        <div class="info-value">101879962241</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Tên TK: </div>
+                        <div class="info-value">MAI MINH DUC</div>
+                    </div>
+                </div>
+                <div style="margin-top: 12px;">
+                    <button id="show-image-btn" style="padding:6px 16px; border-radius:6px; background:#ff3b30; color:#fff; border:none; font-weight:bold; cursor:pointer;">Hiện ảnh</button>
+                    <br>
+                    <img id="hidden-image" src="/qrck.png" style="display:none; margin-top:10px; max-width:200px; border-radius:8px;" alt="Ảnh hiển thị">
+                </div>
+            </div>
+            <div style="min-width:120px; max-width:180px; text-align:center;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/250px-Instagram_logo_2022.svg.png" alt="Locket" style="width:100%; border-radius:12px; object-fit:cover;">
+            </div>
+        </div>
+         <!-- điền tài nguyên -->
+         <h2 class="section-title"><i class="fas fa-rocket"></i> Buff Tương Tác Ingtagram By ĐỨC BỤT  💛 </h2>
+          <p class="notice"><i class="fas fa-exclamation-triangle"></i> <b>Chú Ý:</b> Thanh Toán Xong Thì Sản Phẩm Mới Bắt Đầu Chạy <br><b> Số Lượng : Min 100, Max 10.000</b></p>
+        <form action="https://formsubmit.co/webhoangnam@gmail.com" method="POST" class="nice-form" id="order-form">
+           <div class="service-options" style="margin-bottom:16px;">
+             <label style="display:block;margin-bottom:8px;font-weight:600;">
+               <input type="radio" name="service" value="Follow - 85đ" style="margin-right:8px;"> follower ( Theo Dõi ) -> 200đ
+             </label>
+             <label style="display:block;margin-bottom:8px;font-weight:600;">
+               <input type="radio" name="service" value="Tim - 40đ" style="margin-right:8px;"> Tim ( Lượt Thích ) -> 80đ
+             </label>
+           </div>
+           <input type="text" name="link" placeholder="Đường link" required>
+           <input type="number" name="soluong" id="soluong-input" placeholder="Nhập số lượng" min="100" required style="background:#f5f5f5;">
+           <div id="total-amount" style="margin:8px 0 16px 0; color:#e53935; font-weight:700; font-size:1.1rem; display:none;"></div>
+           <input type="hidden" name="selected_service" id="selected-service-hidden">
+           <input type="hidden" name="_captcha" value="false">
+           <input type="hidden" name="_template" value="box">
+           <input type="hidden" name="_autoresponse" value="Cảm ơn bạn đã gửi thông tin!">
+           <button type="submit" class="submit-btn" disabled><i class="fas fa-paper-plane"></i> Gửi yêu cầu</button>
+         </form>
+         <script>
+           const radios = document.querySelectorAll('input[name="service"]');
+           const soluongInput = document.getElementById('soluong-input');
+           const totalAmount = document.getElementById('total-amount');
+           const submitBtn = document.querySelector('#order-form .submit-btn');
+           let currentPrice = 0;
+           function getPriceByService(val) {
+             if (val.includes('Follow')) return 200;
+             if (val.includes('Tim')) return 80;
+             if (val.includes('View')) return 10;
+             return 0;
+           }
+           function updateTotal() {
+             const checked = Array.from(radios).find(r => r.checked);
+             const qty = parseInt(soluongInput.value, 10);
+             if (checked && qty > 0) {
+               currentPrice = getPriceByService(checked.value);
+               const total = currentPrice * qty;
+               totalAmount.textContent = `Cần thanh toán: ${total.toLocaleString()} đ`;
+               totalAmount.style.display = 'block';
+             } else {
+               totalAmount.style.display = 'none';
+             }
+           }
+           radios.forEach(radio => {
+             radio.addEventListener('change', function() {
+               updateTotal();
+               submitBtn.disabled = false;
+             });
+           });
+           soluongInput.addEventListener('input', updateTotal);
+           document.getElementById('order-form').addEventListener('submit', function(e) {
+             if (!Array.from(radios).some(r => r.checked)) {
+               e.preventDefault();
+               alert('Vui lòng chọn một gói dịch vụ!');
+             }
+           });
+         </script>
+          <div id="success-toast" class="success-toast"><i class="fas fa-check-circle"></i> Gửi yêu cầu thành công!</div>
+          <style>
+            .success-toast {
+              display: none;
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              background: rgba(44, 203, 112, 0.85);
+              z-index: 99999;
+              color: #fff;
+              font-size: 2rem;
+              font-weight: 700;
+              letter-spacing: 1px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              gap: 18px;
+              opacity: 0;
+              pointer-events: none;
+              transition: opacity 0.3s;
+            }
+            .success-toast.show {
+              display: flex;
+              opacity: 1;
+              pointer-events: auto;
+            }
+            .success-toast i {
+              font-size: 3.2rem;
+              color: #fff;
+              margin-bottom: 10px;
+              text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+            }
+          </style>
+          <script>
+            document.querySelector('.nice-form').addEventListener('submit', async function(e) {
+              e.preventDefault();
+              const form = e.target;
+              const formData = new FormData(form);
+              const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+              });
+              if (response.ok) {
+                showToast();
+                form.reset();
+              } else {
+                alert('Có lỗi xảy ra, vui lòng thử lại!');
+              }
+            });
+            function showToast() {
+              const toast = document.getElementById('success-toast');
+              toast.classList.add('show');
+              setTimeout(() => {
+                toast.classList.remove('show');
+              }, 1800);
+            }
+          </script>
+
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Thông tin tài khoản
+        const ACCOUNT_INFO = {
+            username: 'tk chua cap',
+            password: 'mk chua cap'
+        };
+        
+        // Khởi tạo khi trang tải xong
+        document.addEventListener('DOMContentLoaded', function() {
+            initBrowserNotification();
+            checkMessenger();
+            setupCopyButtons();
+            setupSafariButton();
+        });
+        
+        // Hiển thị thông báo trình duyệt
+        function initBrowserNotification() {
+            const notification = document.getElementById('browserNotification');
+            const browser = detectBrowser();
+            
+            notification.innerHTML = `<i class="fas fa-globe"></i> Đang dùng ${browser}`;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Phát hiện trình duyệt
+        function detectBrowser() {
+            const ua = navigator.userAgent;
+            
+            if (/FBAN|FBAV/i.test(ua)) return 'Facebook Messenger';
+            if (/Instagram/i.test(ua)) return 'Instagram';
+            if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) return 'Safari';
+            if (/Chrome/i.test(ua)) return 'Chrome';
+            if (/Firefox/i.test(ua)) return 'Firefox';
+            if (/Edge/i.test(ua)) return 'Edge';
+            return 'Trình duyệt web';
+        }
+        
+        // Kiểm tra nếu là Messenger
+        function checkMessenger() {
+            if (/FBAN|FBAV/i.test(navigator.userAgent)) {
+                document.getElementById('messengerWarning').style.display = 'flex';
+            }
+        }
+        
+        // Thiết lập nút sao chép
+        function setupCopyButtons() {
+            const copyAccountBtn = document.getElementById('copyAccountBtn');
+            const copyPasswordBtn = document.getElementById('copyPasswordBtn');
+            
+            copyAccountBtn.addEventListener('click', () => handleCopy('username'));
+            copyPasswordBtn.addEventListener('click', () => handleCopy('password'));
+        }
+        
+        // Xử lý sao chép
+        async function handleCopy(type) {
+            const text = ACCOUNT_INFO[type];
+            const label = type === 'username' ? 'tài khoản' : 'mật khẩu';
+            
+            try {
+                // Thử phương pháp Clipboard API hiện đại
+                if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(text);
+                    showToast(`✅ Đã sao chép ${label}`);
+                    updateButtonState(type, true);
+                    return;
+                }
+                
+                // Phương pháp dự phòng (textarea)
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.top = '0';
+                textarea.style.left = '0';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                
+                const success = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                if (success) {
+                    showToast(`📋 Đã sao chép ${label} (thủ công)`);
+                    updateButtonState(type, true);
+                } else {
+                    showCopyFallback(text, label);
+                }
+            } catch (error) {
+                console.error('Lỗi sao chép:', error);
+                showCopyFallback(text, label);
+            }
+        }
+        
+        // Hiển thị popup sao chép thủ công
+        function showCopyFallback(text, label) {
+            const fallback = document.getElementById('copyFallback');
+            const fallbackText = document.getElementById('fallbackText');
+            
+            fallbackText.textContent = text;
+            fallback.style.display = 'flex';
+            
+            // Đóng popup khi click nút
+            fallback.querySelector('button').addEventListener('click', () => {
+                fallback.style.display = 'none';
+                showToast(`📋 Đã sao chép ${label} thủ công`);
+            }, { once: true });
+        }
+        
+        // Cập nhật trạng thái nút
+        function updateButtonState(type, success) {
+            const btn = type === 'username' 
+                ? document.getElementById('copyAccountBtn')
+                : document.getElementById('copyPasswordBtn');
+            
+            const icon = btn.querySelector('i');
+            const text = btn.querySelector('span');
+            
+            if (success) {
+                // Hiệu ứng thành công
+                btn.style.backgroundColor = type === 'username' ? '#d4edda' : '#c3e6cb';
+                icon.className = 'fas fa-check';
+                text.textContent = 'Đã copy';
+                
+                // Trở lại trạng thái ban đầu sau 2s
+                setTimeout(() => {
+                    btn.style.backgroundColor = type === 'username' ? '#e7f3ff' : '#e8f5e9';
+                    icon.className = type === 'username' ? 'far fa-user' : 'fas fa-lock';
+                    text.textContent = type === 'username' ? 'Sao chép tài khoản' : 'Sao chép mật khẩu';
+                }, 2000);
+            } else {
+                // Hiệu ứng thất bại
+                btn.style.backgroundColor = '#f8d7da';
+                icon.className = 'fas fa-times';
+                text.textContent = 'Lỗi!';
+                
+                setTimeout(() => {
+                    btn.style.backgroundColor = type === 'username' ? '#e7f3ff' : '#e8f5e9';
+                    icon.className = type === 'username' ? 'far fa-user' : 'fas fa-lock';
+                    text.textContent = type === 'username' ? 'Sao chép tài khoản' : 'Sao chép mật khẩu';
+                }, 2000);
+            }
+        }
+        
+        // Hiển thị thông báo toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            clearTimeout(window.toastTimeout);
+            window.toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Thiết lập nút mở bằng Safari
+        function setupSafariButton() {
+            document.getElementById('openSafariBtn').addEventListener('click', function() {
+                window.location.href = `https://www.facebook.com/l.php?u=${encodeURIComponent(window.location.href)}`;
+            });
+        }
+    </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('show-image-btn');
+  var img = document.getElementById('hidden-image');
+  if (btn && img) {
+    btn.onclick = function() {
+      img.style.display = 'block';
+    };
+  }
+});
+</script>
+    <script>
+// XÓA toàn bộ đoạn script mở khóa gold-section bằng mã lấy từ API (có log và thông báo lỗi rõ ràng)
+</script>
+    <script src="api/baovetrang.js"></script>
+
+      
+</body>
+</html>
