@@ -38,10 +38,6 @@ window.ShopData = {
       price: '59.000₫',
       priceOriginal: '99.000₫',
       actions: {
-        copies: [
-          { label: 'Sao chép mã 1', value: 'LOCKET-GOLD-KEY-1' },
-          { label: 'Sao chép mã 2', value: 'LOCKET-GOLD-KEY-2' }
-        ],
         links: [
           { label: 'Ấn Vào Để Tải', href: 'https://github.com/hoangnamnion/ducbut/releases/download/untagged-b973ef79e8bd131e7eaf/Locket_Gold_DUCBUT.apk' },
         ]
@@ -49,6 +45,7 @@ window.ShopData = {
     }, 
   ]
 };
+
 
 
 
