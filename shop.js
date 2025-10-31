@@ -16,13 +16,14 @@ window.ShopData = {
       priceOriginal: '99.000₫',
       actions: {
         copies: [
-          { label: 'Sao chép mã 1', value: 'LOCKET-GOLD-KEY-1' },
-          { label: 'Sao chép mã 2', value: 'LOCKET-GOLD-KEY-2' }
+          { label: 'Sao chép mã 1', value: 'maiduc037@gmail.com' },
+          { label: 'Sao chép mã 2', value: '24112006.Duc' }
         ],
         links: [
-          { label: 'Chuyển đến trang 1', href: 'https://example.com/1' },
-          { label: 'Chuyển đến trang 2', href: 'https://example.com/2' },
-          { label: 'Chuyển đến trang 3', href: 'https://example.com/3' }
+          { label: 'Lệnh 1', href: 'shadowrocket://install?module=https://raw.githubusercontent.com/caovannam2ka5/LocketGoldd/refs/heads/main/locketGoldmodule' },
+          { label: 'Lệnh 2', href: 'shadowrocket://config/add/https://raw.githubusercontent.com/caovannam2ka5/LocketGoldd/refs/heads/main/LocketGold_HoangNam' },
+          { label: 'Lệnh 3', href: 'https://dl.dropboxusercontent.com/scl/fi/8r9awfrmrtj07g33brc1s/LocketGold_Ho-ng_Nam_i-2.crt?rlkey=0pg68szlycjiu97itrzhyoc44&amp;st=u4c4wmyl&amp;dl=1' },
+          { label: 'Cài Đặt Locket ', href: 'shadowrocket://config/add/https://raw.githubusercontent.com/caovannam2ka5/LocketGoldd/refs/heads/main/LocketGold_HoangNam' }
         ]
       }
     },  
@@ -48,5 +49,6 @@ window.ShopData = {
     }, 
   ]
 };
+
 
 
