@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - PremiumHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="shop.js" defer></script>
+    <script src="mavip.js" defer></script>
+    <script src="product.js" defer></script>
+    <style>
+        /* Responsive enhancements for product detail */
+        #product-section { max-width: 1000px; margin: 0 auto; padding: 1rem; }
+        #product-detail .account-card { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 2rem !important; align-items: start !important; }
+        #product-detail .account-image { width: 100%; height: 320px !important; object-fit: cover; border-radius: 12px; }
+        #product-detail .account-info { min-width: 0; }
+        #product-detail .account-description { -webkit-line-clamp: unset !important; }
+        #product-detail #actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        #product-detail #actions .btn { padding: 0.85rem 1rem; }
+        #product-detail #vip-gate { width: 100%; gap: 0.5rem; }
+        #product-detail #vip-gate input { flex: 1; min-width: 0; }
+
+        @media (max-width: 992px) {
+            #product-detail .account-card { grid-template-columns: 1fr 1fr !important; gap: 1.5rem !important; }
+            #product-detail .account-image { height: 260px !important; }
+        }
+
+        @media (max-width: 768px) {
+            #product-detail .account-card { grid-template-columns: 1fr !important; gap: 1rem !important; }
+            #product-detail .account-image { height: 220px !important; }
+            #product-detail .account-title { font-size: 1.4rem !important; }
+            #product-detail #actions .btn { width: 100%; justify-content: center; }
+            #product-detail #vip-gate { flex-direction: column; align-items: stretch; }
+            #product-detail #vip-gate input { width: 100%; }
+            #product-detail #vip-gate #vip-submit { width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            #product-section { padding: 0.75rem; }
+            #product-detail .account-image { height: 190px !important; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>Mai Duc</span>
+            </div>
+            <div class="header-actions"></div>
+        </div>
+    </header>
+
+    <section class="section" id="product-section" style="max-width: 1000px;">
+        <div id="product-detail"></div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Về chúng tôi</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Liên hệ</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Email: Loading...</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2025 by MAI DUC.</div>
+    </footer>
+</body>
+</html>
+

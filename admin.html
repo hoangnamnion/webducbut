@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Tạo mã VIP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="mavip.js" defer></script>
+    <style>
+        .admin-container {
+            max-width: 600px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        .admin-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .admin-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+        .admin-form button {
+            padding: 1rem 2rem;
+        }
+        .status {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-top: 1rem;
+            display: none;
+        }
+        .status.success {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+        .status.error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>PremiumHub</span>
+            </div>
+            <div class="header-actions"></div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <h1 style="margin-bottom: 2rem; color: var(--primary);">
+            <i class="fas fa-key"></i> Mã VIP hiện tại
+        </h1>
+
+        <div>
+            <div style="margin-bottom: 1rem; color: var(--gray);">Mã đang sử dụng:</div>
+            <div id="current-code" style="background: var(--gray-light); padding: 1rem; border-radius: var(--border-radius); font-family: monospace;">
+                Đang tải...
+            </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <a href="index.html" class="btn btn-outline" style="width: 100%;">
+                <i class="fas fa-arrow-left"></i> Quay lại trang chủ
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Hiển thị mã VIP từ window.MAVIP (hỗ trợ 1 mã hoặc nhiều mã)
+        function renderVipCodes() {
+            const el = document.getElementById('current-code');
+            if (!el) return;
+
+            const vip = (window.MAVIP || {});
+            const list = Array.isArray(vip.codes) ? vip.codes.map(c => String(c)) : [];
+            const single = vip.code ? [String(vip.code)] : [];
+            const codes = [...new Set([...list, ...single])];
+
+            if (!codes.length) {
+                el.textContent = 'Không có mã nào được cấu hình';
+                return;
+            }
+
+            el.innerHTML = codes
+                .map(c => `<span style="display:inline-block;background:#eef2ff;color:#3730a3;padding:0.4rem 0.7rem;border-radius:999px;margin:0.2rem 0.3rem;font-weight:600;">${c}</span>`) 
+                .join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderVipCodes);
+    </script>
+</body>
+</html>
+
