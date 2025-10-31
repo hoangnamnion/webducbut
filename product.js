@@ -105,6 +105,9 @@ function renderProductDetail() {
         }
         target.textContent = 'Đã sao chép!';
         setTimeout(() => (target.textContent = target.getAttribute('data-original') || 'Sao chép'), 1200);
+
+        // Show toast notification on screen
+        showCopyToast('Đã sao chép vào bộ nhớ tạm');
       } catch (err) {
         console.error('Copy failed', err);
       }
@@ -113,4 +116,53 @@ function renderProductDetail() {
 }
 
 document.addEventListener('DOMContentLoaded', renderProductDetail);
+
+// Lightweight toast (no CSS dependency)
+function showCopyToast(message) {
+  try {
+    // Ensure keyframes for shake effect are available
+    if (!document.getElementById('copy-toast-style')) {
+      const style = document.createElement('style');
+      style.id = 'copy-toast-style';
+      style.textContent = `@keyframes copyToastShake { 0% { transform: translate(-50%, -50%) rotate(0deg); } 10% { transform: translate(calc(-50% - 2px), calc(-50% - 1px)) rotate(-0.6deg); } 20% { transform: translate(calc(-50% + 3px), calc(-50% + 2px)) rotate(0.6deg); } 30% { transform: translate(calc(-50% - 3px), calc(-50% + 1px)) rotate(-0.6deg); } 40% { transform: translate(calc(-50% + 2px), calc(-50% - 2px)) rotate(0.6deg); } 50% { transform: translate(calc(-50% - 2px), calc(-50% + 2px)) rotate(-0.6deg); } 60% { transform: translate(calc(-50% + 2px), calc(-50% - 1px)) rotate(0.6deg); } 70% { transform: translate(calc(-50% - 1px), calc(-50% + 1px)) rotate(-0.4deg); } 80% { transform: translate(calc(-50% + 1px), calc(-50% - 1px)) rotate(0.4deg); } 90% { transform: translate(calc(-50% - 1px), calc(-50% + 1px)) rotate(-0.2deg); } 100% { transform: translate(-50%, -50%) rotate(0deg); } }`;
+      document.head.appendChild(style);
+    }
+    const existing = document.getElementById('copy-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'copy-toast';
+    toast.textContent = message || 'Đã sao chép';
+    toast.style.position = 'fixed';
+    toast.style.left = '50%';
+    toast.style.top = '50%';
+    toast.style.transform = 'translate(-50%, -50%)';
+    toast.style.background = '#10b981';
+    toast.style.color = '#ffffff';
+    toast.style.padding = '20px 28px';
+    toast.style.borderRadius = '14px';
+    toast.style.boxShadow = '0 12px 20px rgba(16, 185, 129, 0.35)';
+    toast.style.fontSize = '28px';
+    toast.style.fontWeight = '700';
+    toast.style.zIndex = '2000';
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+    toast.style.willChange = 'transform, opacity';
+
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translate(-50%, -50%) scale(1.02)';
+      toast.style.animation = 'copyToastShake 600ms ease';
+    });
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translate(-50%, -50%) scale(0.98)';
+      setTimeout(() => toast.remove(), 300);
+    }, 1400);
+  } catch (_) {
+    // ignore
+  }
+}
 
