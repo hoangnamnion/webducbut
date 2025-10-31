@@ -1,630 +1,1028 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHOP ĐỨC BỤT</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      margin: 0;
-      padding: 0;
-      color: #222;
-    }
-    .ttshop-header {
-      background: linear-gradient(135deg, #ff006a 0%, #000 100%);
-      color: #fff;
-      padding: 0 0 18px 0;
-      position: relative;
-      min-height: 160px;
-    }
-    .ttshop-header-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px 0 16px;
-    }
-    .ttshop-back {
-      font-size: 1.5rem;
-      color: #fff;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-    .ttshop-icons {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .ttshop-cart {
-      position: relative;
-      font-size: 1.6rem;
-      cursor: pointer;
-    }
-    .ttshop-cart-badge {
-      position: absolute;
-      top: -7px;
-      right: -10px;
-      background: #ff3b30;
-      color: #fff;
-      font-size: 0.8em;
-      border-radius: 10px;
-      padding: 1px 6px;
-      font-weight: bold;
-    }
-    .ttshop-profile {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 0 16px;
-      margin-top: 8px;
-    }
-    .ttshop-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 2.5px solid #fff;
-      object-fit: cover;
-      background: #eee;
-    }
-    .ttshop-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 4px;
-    }
-    .ttshop-name {
-      font-size: 1.18rem;
-      font-weight: bold;
-      color: #fff;
-      margin-bottom: 2px;
-      word-break: break-word;
-      max-width: 100%;
-    }
-    .ttshop-meta {
-      display: flex;
-      gap: 12px;
-      font-size: 0.98rem;
-      color: #fff;
-      opacity: 0.92;
-    }
-    .ttshop-meta span {
-      border-right: 1px solid #fff3;
-      padding-right: 10px;
-      margin-right: 6px;
-    }
-    .ttshop-meta span:last-child {
-      border-right: none;
-      padding-right: 0;
-      margin-right: 0;
-    }
-    .ttshop-sort {
-      margin: 0 auto;
-      margin-top: 12px;
-      max-width: 500px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: #fff;
-      border-radius: 8px;
-      padding: 7px 12px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      font-size: 1rem;
-    }
-    .ttshop-sort select {
-      border: none;
-      background: none;
-      font-size: 1rem;
-      outline: none;
-      color: #222;
-    }
-    .ttshop-products {
-      max-width: 500px;
-      margin: 18px auto 0 auto;
-      padding: 0 0 24px 0;
-    }
-    .product-list {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .product-item {
-      display: flex;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-      padding: 10px;
-      align-items: flex-start;
-      position: relative;
-      min-height: 90px;
-    }
-    .product-img-wrap {
-      position: relative;
-      min-width: 80px;
-      max-width: 80px;
-      height: 80px;
-      margin-right: 12px;
-      border-radius: 8px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .product-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .product-discount {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      background: #ff3b30;
-      color: #fff;
-      font-size: 0.85em;
-      font-weight: bold;
-      border-radius: 4px;
-      padding: 2px 6px;
-      z-index: 2;
-    }
-    .product-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .product-name {
-      font-size: 1.05rem;
-      font-weight: 500;
-      margin-bottom: 2px;
-      color: #222;
-      line-height: 1.2;
-      overflow: visible;
-      white-space: nowrap;
-      max-width: 100%;
-    }
-    .product-price {
-      color: #ff3b30;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 2px;
-    }
-    .product-price sup {
-      font-size: 0.8em;
-      top: -0.3em;
-    }
-    .product-sold {
-      color: #888;
-      font-size: 0.92em;
-      margin-left: 8px;
-      font-weight: 400;
-    }
-    .product-rating {
-      font-size: 0.98em;
-      color: #fbc02d;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .star {
-      color: #fbc02d;
-      font-size: 1 em;
-      margin-right: 1px;
-      vertical-align: -1px;
-    }
-    .product-badge {
-      background: #ffe082;
-      color: #b26a00;
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-size: 0.85em;
-      margin-left: 6px;
-    }
-    .product-shop {
-      color: #222;
-      font-size: 0.97em;
-      margin-bottom: 2px;
-      margin-top: 2px;
-      font-weight: 500;
-    }
-    .product-buy {
-      align-self: flex-end;
-      background: #ff3b30;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 18px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 4px;
-      transition: background 0.2s;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-    }
-    .product-buy:hover {
-      background: #d32f2f;
-    }
-    @media (max-width: 700px) {
-      .ttshop-header {
-        min-height: 120px;
-        padding-bottom: 10px;
-      }
-      .ttshop-header-top {
-        padding: 8px 8px 0 8px;
-      }
-      .ttshop-profile {
-        gap: 10px;
-        padding: 0 8px;
-      }
-      .ttshop-avatar {
-        width: 48px;
-        height: 48px;
-      }
-      .ttshop-name {
-        font-size: 1rem;
-        max-width: 120px;
-      }
-      .ttshop-meta {
-        font-size: 0.92rem;
-        gap: 7px;
-      }
-      .ttshop-sort {
-        font-size: 0.97rem;
-        padding: 5px 8px;
-      }
-      .ttshop-products {
-        max-width: 100vw;
-        padding: 0 0 16px 0;
-      }
-      .product-list {
-        gap: 10px;
-      }
-      .product-item {
-        padding: 6px;
-        min-height: 60px;
-      }
-      .product-img-wrap {
-        min-width: 48px;
-        max-width: 48px;
-        height: 48px;
-        margin-right: 6px;
-      }
-      .product-name {
-        font-size: 0.93rem;
-        max-width: 1000px;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-      .product-price {
-        font-size: 0.97rem;
-      }
-      .product-shop {
-        font-size: 0.89em;
-      }
-      .product-buy {
-        padding: 3px 8px;
-        font-size: 0.92rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAI DUC - Tài khoản cao cấp giá tốt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="shop.js" defer></script>
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border-radius: 12px;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--dark);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            right: 20%;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: -50px;
+        }
+
+        /* Services */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid var(--gray-light);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .service-card.featured {
+            border: 2px solid var(--primary);
+            position: relative;
+            transform: scale(1.05);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gray-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-features i {
+            color: var(--success);
+        }
+
+        .service-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1.5rem 0;
+        }
+
+        .service-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        /* Accounts Grid */
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .account-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .account-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .account-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .account-image {
+            height: 160px;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .account-card:hover .account-image {
+            transform: scale(1.05);
+        }
+
+        .account-info {
+            padding: 1.5rem;
+        }
+
+        .account-category {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .account-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .account-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .account-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .account-features li {
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .account-features i {
+            color: var(--success);
+            font-size: 0.8rem;
+        }
+
+        .account-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--dark);
+        }
+
+        .price-original {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .buy-now {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .buy-now:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* How It Works */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gray-light);
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .step-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .cart-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .close-cart:hover {
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--gray-light);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background: var(--gray-light);
+        }
+
+        .quantity {
+            width: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .remove-item {
+            color: var(--danger);
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: auto;
+            transition: var(--transition);
+        }
+
+        .remove-item:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.7rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cart-sidebar {
+                max-width: 100%;
+            }
+            
+            .service-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                height: 70vh;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .services,
+            .accounts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="ttshop-header">
-    <div class="ttshop-header-top">
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>Mai Duc</span>
+            </div>
+            
+            
+            <div class="header-actions">
+            </div>
+        </div>
+    </header>
 
-    </div>
-    <div class="ttshop-profile">
-      <img class="ttshop-avatar" src="https://webchuaanh.odoo.com/web/image/313-4822f623/480906368_649760317574241_1410297243193594829_n.webp" alt="Avatar">
-      <div class="ttshop-info">
-        <div class="ttshop-name">Shop <b>Đức Bụt</b></div>
-        <div class="ttshop-meta">
-          <span>1tr follower</span>
-          <span>17 Sản phẩm</span>
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('img/maiduc.png') center / cover no-repeat;">
+        <div class="hero-content">
+            <h1>Hỗ Trợ IOS và Android với giá tốt nhất</h1>
+            <p>Trải nghiệm đầy đủ tính năng của các dịch vụ hàng đầu với mức giá cực kỳ ưu đãi. Netflix, Spotify, YouTube Premium và nhiều hơn nữa.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#accounts" class="btn btn-primary">
+                    <span>Mua ngay</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#how-it-works" class="btn btn-outline">
+                    <span>Hướng dẫn</span>
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="ttshop-sort">
-    <span>Sắp xếp tìm kiếm</span>
-    <select>
-      <option>all</option>
-      <option>App ios</option>
-      <option>App Android</option>
-      <option>Tài Khoản Pro</option>
-      <option>Tăng Lượt theo dõi</option>
-    </select>
-    <span style="margin-left:auto;font-size:1.2em;">&#9776;</span>
-  </div>
-  <div class="ttshop-products">
-    <div class="product-list">
-<!-- sản phẩm ios 1 -->
-      <div class="product-item" data-category="App ios" data-product-id="locket_ios">
-        <div class="product-img-wrap">
-          <img src="https://ineqe.com/wp-content/uploads/2022/02/locket_app_icon-1024x1024.png" alt="Vali VL01" class="product-img">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Locket Gold IOS </div>
-          <div class="product-price">59.000<sup>đ</sup> <span class="product-sold">Đã bán 10.1K</span></div>
-          <div class="product-rating">
-            4.9 <span class="star">★</span>
-            <span class="product-badge">IOS</span>
-          </div>
-          <div class="product-shop">Bảo Hành Trọn Đời</div>
-          <a class="product-buy" href="locketios.html">Mua</a>
-        </div>
-      </div>
-<!-- sản phẩm android 1 -->
-      <div class="product-item" data-category="App Android" data-product-id="locket_android">
-        <div class="product-img-wrap">
-          <img src="https://ineqe.com/wp-content/uploads/2022/02/locket_app_icon-1024x1024.png" alt="Vali VL01" class="product-img">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Locket Gold Android </div>
-          <div class="product-price">49.000<sup>đ</sup> <span class="product-sold">Đã bán 206</span></div>
-          <div class="product-rating">
-            5 <span class="star">★</span>
-            <span class="product-badge">Android</span>
-          </div>
-          <div class="product-shop">Bảo Hành Trọn Đời</div>
-          <a class="product-buy" href="locketandroi.html">Mua</a>
-        </div>
-      </div>
+        
+        <div class="hero-bg-shapes"></div>
+    </section>
 
-      <!-- sản phẩm ios 2 -->
-      <div class="product-item" data-category="App ios" data-product-id="spotify_ios">
-        <div class="product-img-wrap">
-          <img src="https://tse3.mm.bing.net/th/id/OIP.Tltt2QmBAxqByzclDP9hpAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sạc nhanh Tranyoo" class="product-img">
+    <!-- Services Section -->
+
+
+    <!-- Accounts Section -->
+    <section class="section" id="accounts" style="background-color: #f1f5f9; border-radius: 20px; margin: 2rem auto;">
+        <div class="section-header">
+            <h2 class="section-title">Tài khoản phổ biến</h2>
+            <p class="section-subtitle">Lựa chọn trong số các tài khoản premium phổ biến nhất</p>
         </div>
-        <div class="product-info">
-          <div class="product-name">Spotify</div>
-          <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Bán 608</span></div>
-          <div class="product-rating">
-            4.6 <span class="star">★</span>
-            <span class="product-badge">IOS</span>
-          </div>
-          <div class="product-shop">Bảo Hành Trọn Đời</div>
-          <a class="product-buy" href="spotify.html">Mua</a>
+        
+        <div class="accounts-grid" id="accounts-grid"></div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" id="how-it-works">
+        <div class="section-header">
+            <h2 class="section-title">Cách thức hoạt động</h2>
+            <p class="section-subtitle">Chỉ với 3 bước đơn giản để sở hữu tài khoản premium</p>
         </div>
-      </div>
-        <!-- sản phẩm ios 3 -->
-      <div class="product-item" data-category="App ios" data-product-id="youtube_ios">
-        <div class="product-img-wrap">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="Sạc nhanh Ugreen" class="product-img">
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Chọn tài khoản</h3>
+                <p class="step-description">Lựa chọn tài khoản premium bạn muốn mua từ danh sách có sẵn.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Thanh toán</h3>
+                <p class="step-description">Thực hiện thanh toán an toàn qua nhiều phương thức khác nhau.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Nhận tài khoản</h3>
+                <p class="step-description">Nhận thông tin tài khoản qua email ngay sau khi thanh toán thành công.</p>
+            </div>
         </div>
-        <div class="product-info">
-          <div class="product-name">Youtube</div>
-          <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Bán 6530</span></div>
-          <div class="product-rating">
-            4 <span class="star">★</span>
-            <span class="product-badge">IOS</span>
-          </div>
-          <div class="product-shop">Bảo Hành 12 Tháng </div>
-          <a class="product-buy" href="youtubeios.html">Mua</a>
-        </div>
-      </div>
-        <!-- sản phẩm android 3 -->
-      <div class="product-item" data-category="App Android" data-product-id="youtube_android">
-        <div class="product-img-wrap">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="Sạc nhanh Ugreen" class="product-img">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Youtube</div>
-          <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Bán 5430</span></div>
-          <div class="product-rating">
-            4.5 <span class="star">★</span>
-            <span class="product-badge">Android</span>
-          </div>
-          <div class="product-shop">Bảo Hành 12 Tháng </div>
-          <a class="product-buy" href="youtubeandroid.html">Mua</a>
-        </div>
-      </div>
-      <!-- sản phẩm ios 4 -->
-      <div class="product-item" data-category="App ios">
-        <div class="product-img-wrap">
-          <img src="https://aicandy.vn/wp-content/uploads/2025/04/picsart.webp" alt="Sạc nhanh Ugreen" class="product-img">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Picscart</div>
-          <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Bán 330</span></div>
-          <div class="product-rating">
-            4.5 <span class="star">★</span>
-            <span class="product-badge">IOS</span>
-          </div>
-          <div class="product-shop">Bảo Hành 12 Tháng </div>
-          <a class="product-buy" href="picscartios.html">Mua</a>
-        </div>
-      </div>
-            <!-- sản phẩm android 4 -->
-            <div class="product-item" data-category="App Android">
-              <div class="product-img-wrap">
-                <img src="https://aicandy.vn/wp-content/uploads/2025/04/picsart.webp" alt="Sạc nhanh Ugreen" class="product-img">
-              </div>
-              <div class="product-info">
-                <div class="product-name">Picscart</div>
-                <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Bán 630</span></div>
-                <div class="product-rating">
-                  4.5 <span class="star">★</span>
-                  <span class="product-badge">Android</span>
+    </section>
+
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Về chúng tôi</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Cam kết hoàn tiền</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Hỗ trợ khách hàng</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Câu hỏi thường gặp</a></li>
+                    <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Liên hệ hỗ trợ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Liên hệ</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Email: Loading...</a></li>
+                    <li><a href="#">Telegram: Loading...</a></li>
+                    <li><a href="#">Zalo: Loading...</a></li>
+                </ul>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
                 </div>
-                <div class="product-shop">Bảo Hành 12 Tháng </div>
-                <a class="product-buy" href="picscartandroid.html">Mua</a>
-              </div>
             </div>
-                  <!-- sản phẩm ios 5 -->
-      <div class="product-item" data-category="App ios">
-        <div class="product-img-wrap">
-          <img src="https://cdn6.aptoide.com/imgs/a/5/c/a5c31870bc21c6054b3607d4a07670ca_icon.png" alt="Sạc nhanh Ugreen" class="product-img">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Lightroom</div>
-          <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Bán 130</span></div>
-          <div class="product-rating">
-            4.5 <span class="star">★</span>
-            <span class="product-badge">IOS</span>
-          </div>
-          <div class="product-shop">Bảo Hành 12 Tháng </div>
-          <a class="product-buy" href="alightmotion.html">Mua</a>
-        </div>
-      </div>
-      <!-- sản phẩm ios 5 -->
-            <div class="product-item" data-category="App ios" data-product-id="spotify_android">
-              <div class="product-img-wrap">
-                <img src="https://img.utdstc.com/icon/8ba/d1b/8bad1b71d4c0265be8117ac3c0aba558ee4ab327bcee0f6ad11b935eef67b1a7:200" alt="Sạc nhanh Tranyoo" class="product-img">
-              </div>
-              <div class="product-info">
-                <div class="product-name">WINK</div>
-                <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Bán 608</span></div>
-                <div class="product-rating">
-                  4.8 <span class="star">★</span>
-                  <span class="product-badge">IOS</span>
+            
+            <div class="footer-col">
+                <h3>Đăng ký nhận tin</h3>
+                <p style="color: #94a3b8; margin-bottom: 1rem;">Nhận thông tin về ưu đãi đặc biệt và tài khoản mới</p>
+                <div style="display: flex;">
+                    <input type="email" placeholder="Email của bạn" style="flex: 1; padding: 0.8rem; border: none; border-radius: var(--border-radius) 0 0 var(--border-radius);">
+                    <button style="background: var(--primary); color: white; border: none; padding: 0 1.2rem; border-radius: 0 var(--border-radius) var(--border-radius) 0; cursor: pointer;">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
-                <div class="product-shop">Bảo Hành Trọn Đời</div>
-                <a class="product-buy" href="wink.html">Mua</a>
-              </div>
-            </div>
-                  <!-- sản phẩm ios 5 -->
-                  <div class="product-item" data-category="App ios" data-product-id="spotify_android">
-                    <div class="product-img-wrap">
-                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXtW2dyBjCVZjh8rNzXCNqOoy8xQ2IDokG9A&s" alt="Sạc nhanh Tranyoo" class="product-img">
-                    </div>
-                    <div class="product-info">
-                      <div class="product-name">VSCO  ( APP chỉnh sửa video )</div>
-                      <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Bán 858</span></div>
-                      <div class="product-rating">
-                        4.8 <span class="star">★</span>
-                        <span class="product-badge">IOS</span>
-                      </div>
-                      <div class="product-shop">Bảo Hành Trọn Đời</div>
-                      <a class="product-buy" href="vsco.html">Mua</a>
-                    </div>
-                  </div>
-            <!-- sản phẩm tk 1 -->
-      <div class="product-item" data-category="Tài Khoản Pro" data-product-id="tiktok_pro">
-        <div class="product-img-wrap">
-          <img src="https://cdn.tgdd.vn/GameApp/2/225686/Screentshots/capcut-chinh-sua-video-mien-phi-don-gian-chuyen-nghiep-225686-logo-08-07-2020.png" alt="Tài Khoản Pro" class="product-img">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Tài Khoản CAPCUT Pro</div>
-          <div class="product-price">120.000<sup>đ</sup> <span class="product-sold">Đã bán 1200</span></div>
-          <div class="product-rating">
-            4.9 <span class="star">★</span>
-            <span class="product-badge">Bảo hành Full thời gian </span>
-          </div>
-          <div class="product-shop">120.000 / Tháng <br>1.200.000 / 1 Năm</div>
-          <a class="product-buy" href="capcutpro.html">Mua</a>
-        </div>
-      </div>
-                  <!-- sản phẩm tk 2 -->
-      <div class="product-item" data-category="Tài Khoản Pro" data-product-id="tiktok_pro">
-        <div class="product-img-wrap">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/2048px-ChatGPT_logo.svg.png" alt="Tài Khoản Pro" class="product-img">
-        </div>
-        <div class="product-info">
-          <div class="product-name">Tài Khoản CHAT GPT</div>
-          <div class="product-price">300.000<sup>đ</sup> <span class="product-sold">Đã bán 267</span></div>
-          <div class="product-rating">
-            4.9 <span class="star">★</span>
-            <span class="product-badge">Bảo hành Full thời gian </span>
-          </div>
-          <div class="product-shop">300.000 / Tháng <br>2.500.000 / 1 Năm</div>
-          <a class="product-buy" href="chatgpt.html">Mua</a>
-        </div>
-
-      </div>
-                        <!-- sản phẩm tk 3 -->
-                        <div class="product-item" data-category="Tài Khoản Pro" data-product-id="tiktok_pro">
-                          <div class="product-img-wrap">
-                            <img src="https://appgiatot.com/wp-content/uploads/2024/07/Canva-Pro.png" alt="Tài Khoản Pro" class="product-img">
-                          </div>
-                          <div class="product-info">
-                            <div class="product-name">Tài Khoản CANVA PRO</div>
-                            <div class="product-price">150.000<sup>đ</sup> <span class="product-sold">Đã bán 267</span></div>
-                            <div class="product-rating">
-                              4.9 <span class="star">★</span>
-                              <span class="product-badge">Bảo hành Full thời gian </span>
-                            </div>
-                            <div class="product-shop">150.000 / 1 Năm</div>
-                            <a class="product-buy" href="canva.html">Mua</a>
-                          </div>
-    </div>
-    <!-- sản phẩm tk 3 -->
-    <div class="product-item" data-category="Tài Khoản Pro" data-product-id="tiktok_pro">
-      <div class="product-img-wrap">
-        <img src="https://www.smarthomecamera.vn/shc-media/2020/07/smarthomecamera.vn_Netflix-1024x576-1.jpg" alt="Tài Khoản Pro" class="product-img">
-      </div>
-      <div class="product-info">
-        <div class="product-name">Tài Khoản NETFLIX  ULTRA 4K</div>
-        <div class="product-price">100.000<sup>đ</sup> <span class="product-sold">Đã bán 267</span></div>
-        <div class="product-rating">
-          4.9 <span class="star">★</span>
-          <span class="product-badge">Bảo hành Full thời gian </span>
-        </div>
-        <div class="product-shop">100.000 / 1 Tháng <br> 990.000 / 1 Năm</div>
-        <a class="product-buy" href="NETFLIX.html">Mua</a>
-      </div>
-  </div>
-      <!-- sản phẩm buf 1 -->
-      <div class="product-item" data-category="Tăng Lượt theo dõi" data-product-id="tiktok_pro">
-        <div class="product-img-wrap">
-          <img src="https://store-images.s-microsoft.com/image/apps.4784.13634052595610511.c45457c9-b4af-46b0-8e61-8d7c0aec3f56.3d483847-81a6-4078-8f83-a35c5c38ee92?h=210" alt="Tài Khoản Pro" class="product-img">
-        </div>
-        <div class="product-info">
-          <div class="product-name">BUFF TIKTOK </div>
-          <div class="product-price">Ấn Mua để xem chi tiết <span class="product-sold"></span></div>
-          <div class="product-rating">
-            4.9 <span class="star">★</span>
-            <span class="product-badge">Bảo hành 7 ngày </span>
-          </div>
-          <a class="product-buy" href="tiktok.html">Mua</a>
-        </div>
-    </div>
-          <!-- sản phẩm buf 3 -->
-          <div class="product-item" data-category="Tăng Lượt theo dõi" data-product-id="tiktok_pro">
-            <div class="product-img-wrap">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiXN9xSEe8unzPBEQOeAKXd9Q55efGHGB9BA&s" alt="Tài Khoản Pro" class="product-img">
-            </div>
-            <div class="product-info">
-              <div class="product-name">BUFF FACEBOOK </div>
-              <div class="product-price">Ấn Mua để xem chi tiết <span class="product-sold"></span></div>
-              <div class="product-rating">
-                4.9 <span class="star">★</span>
-                <span class="product-badge">Bảo hành 7 ngày </span>
-              </div>
-              <a class="product-buy" href="Facebook.html">Mua</a>
             </div>
         </div>
-      <!-- sản phẩm buf 2 -->
-      <div class="product-item" data-category="Tăng Lượt theo dõi" data-product-id="tiktok_pro">
-        <div class="product-img-wrap">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/250px-Instagram_logo_2022.svg.png" alt="Tài Khoản Pro" class="product-img">
+        
+        <div class="copyright">
+            &copy; 2025 by MAI DUC. Tất cả các quyền được bảo lưu.
         </div>
-        <div class="product-info">
-          <div class="product-name">BUFF Ingtagram </div>
-          <div class="product-price">Ấn Mua để xem chi tiết <span class="product-sold"></span></div>
-          <div class="product-rating">
-            4.9 <span class="star">★</span>
-            <span class="product-badge">Bảo hành 7 ngày </span>
-          </div>
-          <a class="product-buy" href="ingtagram.html">Mua</a>
-        </div>
-    </div>
-  <script>
-    const productItems = document.querySelectorAll('.product-item');
-    const sortSelect = document.querySelector('.ttshop-sort select');
-    sortSelect.addEventListener('change', function() {
-      const value = this.value;
-      productItems.forEach(item => {
-        if (value === 'Tất cả' || item.getAttribute('data-category') === value) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    });
-  </script>
-    <script src="api/baovetrang.js"></script>
+    </footer>
+    <script src="app.js" defer></script>
 </body>
 </html>
