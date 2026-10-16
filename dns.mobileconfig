@@ -1,93 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-  <dict>
-    <key>PayloadDisplayName</key>
-    <string>MAI ĐỨC - DNS</string>
-    <key>PayloadDescription</key>
-    <string> Chức Năng : 
-✔️ Bảo Vệ Không Mất Locket Gold 
-ZALO : Đang Update 
-_MAI ĐỨC_
-    </string>
-    <key>PayloadIdentifier</key>
-    <string>io.nextdns.886344.profile</string>
-    <key>PayloadScope</key>
-    <string>System</string>
-    <key>PayloadType</key>
-    <string>Configuration</string>
-    <key>PayloadUUID</key>
-    <string>A1E2F262-DB73-40F6-BD22-2E42A43A3C94.886344</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
-    <key>PayloadContent</key>
-    <array>
+<dict>
+  <key>PayloadDisplayName</key>
+  <string>💛 Locket Gold VIP - ĐỨC BỤT</string>
+  <key>PayloadDescription</key>
+  <string>━━━━━━━━━━━━━━━━━━━━━━
+👑 HỆ THỐNG LOCKET GOLD VIP
+━━━━━━━━━━━━━━━━━━━━━━
+⚡ TÍNH NĂNG:
+✔️ Kích hoạt &amp; Duy trì Locket Gold VIP
+
+👤 BẢN QUYỀN &amp; HỖ TRỢ:
+• Tác giả: ĐỨC BỤT
+• Zalo hỗ trợ: 0367848569
+• Admin: MAI MINH DUC
+
+📌 BẮT BUỘC SAU KHI CÀI ĐẶT:
+1. Vào Cài đặt ➜ Cài đặt chung ➜ Giới thiệu.
+2. Kéo xuống cuối chọn "Cài đặt tin cậy chứng nhận".
+3. Gạt BẬT công tắc màu xanh cho "LocketGold CA".
+━━━━━━━━━━━━━━━━━━━━━━</string>
+  <key>PayloadOrganization</key>
+  <string>ĐỨC BỤT (Zalo: 0367848569)</string>
+  <key>PayloadIdentifier</key>
+  <string>com.locketgold.ducbut.config</string>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadUUID</key>
+  <string>7EFC14CA-B59F-4BAD-B487-0C4FC0C4D3F4</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+  <key>PayloadRemovalDisallowed</key>
+  <false/>
+  <key>PayloadContent</key>
+  <array>
+
+    <!-- ① Trust Root CA -->
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.security.root</string>
+      <key>PayloadIdentifier</key>
+      <string>com.locketgold.hoangquan.ca</string>
+      <key>PayloadUUID</key>
+      <string>80330486-E9C7-4EBB-83E8-1BCA82B6E780</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadDisplayName</key>
+      <string>LocketGold CA - Chứng Chỉ Gốc (ĐỨC BỤT)</string>
+      <key>PayloadDescription</key>
+      <string>Chứng chỉ xác thực an toàn Locket Gold VIP - Quản trị: ĐỨC BỤT (Zalo: 0367848569)</string>
+      <key>PayloadCertificateFileName</key>
+      <string>LocketGoldCA.der</string>
+      <key>PayloadContent</key>
+      <data>
+MIIDBzCCAe+gAwIBAgIUN2C/L/EBuG+ZQH8el1i2OHmNu+IwDQYJKoZIhvcNAQELBQAwMzEWMBQGA1UEAwwNTG9ja2V0R29sZCBDQTEZMBcGA1UECgwQTG9ja2V0R29sZCBMb2NhbDAeFw0yNjEwMTUxMDM1MDZaFw0zNjEwMTMxMDM1MDZaMDMxFjAUBgNVBAMMDUxvY2tldEdvbGQgQ0ExGTAXBgNVBAoMEExvY2tldEdvbGQgTG9jYWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDyg9lacY+SBzi3oBGeU+6pO5bKt5ozzIV4ZSLeQrBCR1RbyiSecQKKR8B7CCmH9+1/Fsn5TTprhBCzdvq6siESIZTNPN5uN39AscdKhKB3tJhuS08AwCJVyrKCd4g4BNjPY8HUCzEtsQ9Liyr240MT2+psxa6yUYFvq12ok7xGb7p7bT0P8TNBSBF+aM4an0kZ9ax+Me9mWqJM0FL7cKtGGeXm1ynr+uZyvtpVnR/ldhXd9Zd9mGsV/Jl8NIyGa93dKlQvWzO+iqyrivAGPcTyWL9mjxrfWMsuL0st76AFRFZlIjjYqIWT4OoUsRs3T7cD+spl3hp6H2yXc42A6Ie9AgMBAAGjEzARMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAMsoMROS/W2hpApryNwwqCiLdpQQF/UCQe1SI/9wtD7vseQ5exPF2hbckCh5+UkYrTqBoFILj0Pjsg27YGu/PduQg1E6ZbK7U1NH3dMlxHTPhAILYHrFZgmTRfLL811UUiBTDJt54SiTrkQOoxT2phF6+PvBCjFxvbe8G71qEpIBEuewNmttRRozmyotJWTSAYSDed0FDqeYTjukXXxyerUkCBR2NLU4QXve1k/sRGh42tZNg4F1o3ORIp5AQxg8KQqYmUeevxFDoR8+M7OuB+7WhI5hLQQ0kakvBZKsPFnqwKjCipPKvSsijJuytoUR9GghBRo3IemwS7zAVhM9f28=</data>
+    </dict>
+
+    <!-- ② DNS over HTTPS (DoH nodns.vn + 5 Domains) -->
+    <dict>
+      <key>PayloadType</key>
+      <string>com.apple.dnsSettings.managed</string>
+      <key>PayloadIdentifier</key>
+      <string>com.locketgold.hoangquan.dns</string>
+      <key>PayloadUUID</key>
+      <string>2D829C72-2E62-4CBE-9294-052385226BEA</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>PayloadDisplayName</key>
+      <string>Locket Gold DNS - Máy Chủ Bản Quyền (Hoàng Quân)</string>
+      <key>PayloadDescription</key>
+      <string>Máy chủ DoH chuyên dụng bảo vệ Locket Gold - Quản trị: ĐỨC BỤT (Zalo: 0367848569)</string>
+      <key>DNSSettings</key>
       <dict>
-        <key>DNSSettings</key>
-        <dict>
-            <key>DNSProtocol</key>
-            <string>HTTPS</string>
-            <key>ServerAddresses</key>
-            <array>
-                <string>1.1.1.1</string>
-                <string>1.0.0.1</string>
-                <string>45.90.28.0</string>
-                <string>45.90.30.0</string>
-                <string>2a07:a8c0::</string>
-                <string>2a07:a8c1::</string>
-            </array>
-            <key>ServerURL</key>
-            <string>https://dns.adguard.com/dns-query</string>
-            
-            <key>SupplementalMatchDomains</key>
-            <array>
-                <string>certs.apple.com</string>
-                <string>crl.apple.com</string>
-                <string>ocsp.apple.com</string>
-                <string>ocsp2.apple.com</string>
-                <string>valid.apple.com</string>
-                <string>crl3.digicert.com</string>
-                <string>crl4.digicert.com</string>
-                <string>ocsp.digicert.cn</string>
-                <string>ocsp.digicert.com</string>
-                
-                <string>api.revenuecat.com</string>
-                <string>app.revenuecat.com</string>
-                <string>in.appcenter.ms</string>
-                <string>app-measurement.com</string>
-                <string>firebaselogging-pa.googleapis.com</string>
-                <string>mixpanel.com</string>
-                <string>api.mixpanel.com</string>
-            </array>
-        </dict>
-        <key>OnDemandRules</key>
+        <key>DNSProtocol</key>
+        <string>HTTPS</string>
+        <key>ServerURL</key>
+        <string>https://103.82.26.44/dns-query</string>
+        <key>SupplementalMatchDomains</key>
         <array>
-            <dict>
-                <key>Action</key>
-                <string>Connect</string>
-                <key>InterfaceTypeMatch</key>
-                <string>WiFi</string>
-            </dict>
-            <dict>
-                <key>Action</key>
-                <string>Connect</string>
-                <key>InterfaceTypeMatch</key>
-                <string>Cellular</string>
-            </dict>
+          <string>api.revenuecat.com</string>
+          <string>revenuecat.com</string>
+          <string>firebaseremoteconfig.googleapis.com</string>
+          <string>firebaseremoteconfigrealtime.googleapis.com</string>
+          <string>firebaselogging.googleapis.com</string>
         </array>
-        <key>PayloadType</key>
-        <string>com.apple.dnsSettings.managed</string>
-        <key>PayloadIdentifier</key>
-        <string>io.nextdns.886344.profile.dnsSettings.managed</string>
-        <key>PayloadUUID</key>
-        <string>A1E2F262-DB73-40F6-BD22-2E42A43A3C94.886344.dnsSettings.managed</string>
-        <key>PayloadDisplayName</key>
-        <string>LOCKET GOLD MAI ĐỨC</string>
-        <key>PayloadOrganization</key>
-        <string>On</string>
-        <key>PayloadVersion</key>
-        <integer>1</integer>
       </dict>
-    </array>
-  </dict>
+    </dict>
+
+  </array>
+</dict>
 </plist>
